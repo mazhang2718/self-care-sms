@@ -10,7 +10,7 @@ class Answer(db.Model):
     answer_text = db.Column(db.Text)
     is_approved = db.Column(db.Boolean)
     view_count = db.Column(db.Integer)
-    dt = db.Column(db.DateTime, default=datetime.datetime.now)
+    # dt = db.Column(db.DateTime, default=datetime.datetime.now)
 
     def __init__(self, text_sid, from_number, answer_text):
         self.text_sid = text_sid

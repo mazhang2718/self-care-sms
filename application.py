@@ -53,11 +53,11 @@ def respond():
     if not session.get('seen_prompt',False):
         # if this is the original interaction with a bot
         if not session.get('seen_intro', False):
-            resp.sms("hello, stranger! I'm a fortune cookie SMS bot.\n\nwant a random fortune? reply by writing a fortune for someone else to crack open!")
+            resp.sms("hello friend - nice to meet you! i'm a self-care SMS bot (:\n\nreply with life advice, self-care tips, or a compliment to send to a stranger, and you'll get texted some nice things by someone in return! ❤️")
             session['seen_intro'] = True
         # if the user is submitting additional fortunes
         else:
-            resp.sms("want a random fortune? reply by writing a fortune for someone else to crack open!")
+            resp.sms("reply with life advice, self-care tips, or a compliment to send to a stranger, and you'll get texted some nice things by someone in return! ❤️")
 
         session['seen_prompt'] = True
 
@@ -77,7 +77,7 @@ def respond():
                                 .first()
 
         if random_ans:
-            resp.sms("excellent, I'll sneak that into someone else's fortune cookie. here's your fortune:\n\n%s" %random_ans.answer_text)
+            resp.sms("what a lovely message! here's what someone submitted for you:\n\n%s" %random_ans.answer_text)
 
             if incoming_msg: # only if there is a msg
                 random_ans.view_count = random_ans.view_count+1
@@ -90,19 +90,19 @@ def respond():
                                 CONFIG_VARS['TWILIO_ACCOUNT_SID'],
                                 CONFIG_VARS['TWILIO_AUTH_TOKEN']
                             )
-                    msg = "your fortune (%s) was just delivered to a stranger!" %random_ans.answer_text
+                    msg = "your message (%s) was just delivered to a stranger!" %random_ans.answer_text
                     message = client.messages.create(
                                 to=random_ans.from_number,
                                 from_=CONFIG_VARS['TWILIO_PHONE_NO'],
                                 body=msg
                             )
         else:
-            resp.sms("excellent, I'll sneak that into someone else's fortune cookie. here's your fortune:\n\n404 FORTUNE NOT FOUND")
+            resp.sms("sorry, there doesn't seem to be any messages in the queue right now! but I hope you have a lovely day nonetheless ❤️")
 
         session['gave_ans'] = True
     elif not session.get('extra_msg',False):
         session['extra_msg'] = True
-        resp.sms("if you want another fortune, text me again tomorrow!")
+        resp.sms("if you want another message, text me again tomorrow! have a lovely rest of the day ❤️❤️❤️ ")
     else:
         return ''
 
@@ -176,7 +176,7 @@ def add_fortune():
     if request.method == 'POST':
 
         new_ans = Answer(None, None, request.form['fortune-text'])
-        new_ans.is_approved = False
+        new_ans.is_approved = True
         db.session.add(new_ans)
         db.session.commit()
 
