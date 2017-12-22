@@ -53,11 +53,11 @@ def respond():
     if not session.get('seen_prompt',False):
         # if this is the original interaction with a bot
         if not session.get('seen_intro', False):
-            resp.sms("hello friend - nice to meet you! i'm a self-care SMS bot (:\n\nreply with life advice, self-care tips, or a compliment to send to a stranger, and you'll get texted some nice things by someone in return! ❤️")
+            resp.sms("hello friend - nice to meet you! i'm a self-care SMS bot (:\n\nreply with life advice, self-care tips, or a compliment to send to a stranger, and you'll get texted some nice things by someone in return! <3")
             session['seen_intro'] = True
         # if the user is submitting additional fortunes
         else:
-            resp.sms("reply with life advice, self-care tips, or a compliment to send to a stranger, and you'll get texted some nice things by someone in return! ❤️")
+            resp.sms("reply with life advice, self-care tips, or a compliment to send to a stranger, and you'll get texted some nice things by someone in return! <3")
 
         session['seen_prompt'] = True
 
@@ -97,12 +97,12 @@ def respond():
                                 body=msg
                             )
         else:
-            resp.sms("sorry, there doesn't seem to be any messages in the queue right now! but I hope you have a lovely day nonetheless ❤️")
+            resp.sms("sorry, there doesn't seem to be any messages in the queue right now! but I hope you have a lovely day nonetheless <3")
 
         session['gave_ans'] = True
     elif not session.get('extra_msg',False):
         session['extra_msg'] = True
-        resp.sms("if you want another message, text me again tomorrow! have a lovely rest of the day ❤️❤️❤️ ")
+        resp.sms("if you want another message, text me again tomorrow! have a lovely rest of the day <3 ")
     else:
         return ''
 
