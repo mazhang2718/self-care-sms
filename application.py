@@ -99,7 +99,7 @@ def respond():
         else:
             resp.sms("sorry, there doesn't seem to be any messages in the queue right now! but I hope you have a lovely day nonetheless <3")
 
-        session['gave_ans'] = True
+        # session['gave_ans'] = True
     elif not session.get('extra_msg',False):
         session['extra_msg'] = True
         resp.sms("if you want another message, text me again tomorrow! have a lovely rest of the day <3 ")
