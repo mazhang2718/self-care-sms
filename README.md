@@ -1,11 +1,11 @@
-# sms-fortune-cookie
-a playful project for exchanging fortunes w/ strangers
+# self care SMS
+a playful project to crowdsource self-care among strangers. built using cathy deng's original sms bot project in the buzzfeed open lab repo.
 
 ## About
 This is a flask app that handles text message exchanges with strangers. It uses [Twilio](https://www.twilio.com/) to send/receive SMS.
 
 In a nutshell, the app:
-- texts a prompt (currently the topic is crowdsourced fortune cookie fortunes, but this can be adapted to fit other topics)
+- texts a prompt
 - stores responses
 - texts randomly selected responses from strangers
 - texts notifications when responses have been seen
@@ -20,10 +20,6 @@ In a nutshell, the app:
 - MySQL
 
 **2. Clone this repo**
-```bash
-git clone https://github.com/buzzfeed-openlab/sms-fortune-cookie.git
-cd sms-fortune-cookie
-```
 
 **3. Install required python libraries**
 
@@ -41,7 +37,7 @@ mysql -u root
 ```
 & then
 ```bash
-create database sms_fortune_cookie;
+create database sms_self_care;
 ```
 
 *If you're working locally, you're good to go. But if you're going to host this on a shared server you probably want to create a new user for this database instead of using `root`.*
@@ -71,4 +67,3 @@ python application.py
 **7. Initialize the database**
 
   Visit the `/initialize` route (e.g. `localhost:5000/intialize`) & enter admin credentials (`ADMIN_USER` & `ADMIN_PASS`). This will create the table for storing responses.
-

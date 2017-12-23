@@ -53,7 +53,7 @@ def respond():
     if not session.get('seen_prompt',False):
         # if this is the original interaction with a bot
         if not session.get('seen_intro', False):
-            resp.sms("hello friend - nice to meet you! i'm a self-care SMS bot (:\n\nreply with life advice, self-care tips, or a compliment to send to a stranger, and you'll get texted some nice things by someone in return! <3")
+            resp.sms("hello friend - nice to meet you! i'm a self-care SMS bot (:\n\nreply with life advice, self-care tips, or a compliment to send to a stranger, and you'll get texted some nice things by someone in return! \U+1F601")
             session['seen_intro'] = True
         # if the user is submitting additional fortunes
         else:
@@ -90,7 +90,7 @@ def respond():
                                 CONFIG_VARS['TWILIO_ACCOUNT_SID'],
                                 CONFIG_VARS['TWILIO_AUTH_TOKEN']
                             )
-                    msg = "your message (%s) was just delivered to a stranger!" %random_ans.answer_text
+                    msg = "hey! just wanted to let you know that your message has been sent to a stranger! <3 "
                     message = client.messages.create(
                                 to=random_ans.from_number,
                                 from_=CONFIG_VARS['TWILIO_PHONE_NO'],
